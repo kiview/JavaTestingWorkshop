@@ -24,7 +24,11 @@ public class StringCalculatorTest {
 
     @Test
     void testDelimiter() {
-        assertEquals('!', stringCalculator.parseDelimiter("//!\\n"));
+        // act
+        var delim = stringCalculator.parseDelimiter("//!\\n");
+
+        // assert
+        assertEquals('!', delim);
     }
 
     @Test
@@ -40,19 +44,25 @@ public class StringCalculatorTest {
             "42# 20,20,2"
     })
     void testLogging(int expected, String input) {
+        // act
         stringCalculator.add(input);
+
+        // assert
         verify(logger).write(String.valueOf(expected));
     }
 
     @Test
     void testNotifyWebservice() {
+        // arrange | given
         var mockWebService = mock(StringCalculator.WebService.class);
         String errorMessage = "Oh noes!";
         doThrow(new RuntimeException(errorMessage)).when(logger).write("1");
         stringCalculator = new StringCalculator(logger, mockWebService);
 
+        // act | when
         stringCalculator.add("1");
 
+        // assert | then
         verify(mockWebService).notify(errorMessage);
     }
 }

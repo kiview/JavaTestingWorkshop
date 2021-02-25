@@ -26,6 +26,8 @@ dependencies {
     // Testcontainers
     testImplementation "org.testcontainers:testcontainers:1.15.2"
     testImplementation "org.testcontainers:junit-jupiter:1.15.2"
+    testImplementation "org.testcontainers:rabbitmq:1.15.2"
+    testImplementation "org.testcontainers:postgresql:1.15.2"
 
     // Mockito
     testImplementation "org.mockito:mockito-core:3.8.0"
@@ -33,6 +35,11 @@ dependencies {
     // Redis - for TC example
     testImplementation "io.lettuce:lettuce-core:5.1.1.RELEASE"
 
+    testImplementation "ch.qos.logback:logback-classic:1.2.3"
+    implementation "com.rabbitmq:amqp-client:5.11.0"
+    testImplementation "org.awaitility:awaitility:4.0.3"
+
+    testRuntime "org.postgresql:postgresql:42.2.19"
 }
 
 test {
